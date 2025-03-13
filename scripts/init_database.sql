@@ -61,3 +61,29 @@ CREATE TABLE Postcall_Survey
 	post_code int
 );
 GO
+-----------------------------------
+-- INSERTING DATA FROM SOURCE
+
+TRUNCATE TABLE zip_codes;
+GO
+
+BULK INSERT zip_codes
+FROM 'C:\Users\passi\OneDrive\Desktop\SQL Files\zip_codes.csv'
+WITH (
+	FIRSTROW = 2,
+	FIELDTERMINATOR = ',',
+	TABLOCK
+);
+GO
+
+TRUNCATE TABLE Postcall_Survey;
+GO
+
+BULK INSERT Postcall_Survey
+FROM 'C:\Users\passi\OneDrive\Desktop\SQL Files\Fire_Services_Customer_Survey.csv'
+WITH (
+	FIRSTROW = 2,
+	FIELDTERMINATOR = ',',
+	TABLOCK
+);
+GO
