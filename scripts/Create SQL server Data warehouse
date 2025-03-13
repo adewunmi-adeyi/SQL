@@ -1,0 +1,50 @@
+USE master;
+GO
+
+-- Drop and recreate the 'DataWarehouseAnalytics' database
+IF EXISTS (SELECT 1 FROM sys.databases WHERE name = 'DataWarehouseAnalytics')
+BEGIN
+    ALTER DATABASE DataWarehouseAnalytics SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE DataWarehouseAnalytics;
+END;
+GO
+-----------------------------------------------------------------------------------
+-- Create the 'DataWarehouseAnalytics' database
+-----------------------------------------------------------------------------------
+
+CREATE DATABASE DataWarehouseAnalytics;
+GO
+
+USE DataWarehouseAnalytics;
+GO
+
+
+-- Build Schema Customer Experience 
+
+CREATE SCHEMA CX_Postcall_survey;
+GO
+
+CREATE TABLE zip_codes (
+	postcode_key int,
+	city nvarchar(50),
+	county nvarchar(50),
+	state_name nvarchar(50),
+	state_code nvarchar(50),
+	country nvarchar(50)
+);
+GO
+
+CREATE TABLE Postcall_Survey
+(
+	call_ID int ,
+	survey_ID nvarchar(50) ,
+	survey_date date,
+	Call_reason nvarchar(50) ,
+	fcr_responses nvarchar(50) ,
+	csat_responses nvarchar(50) ,
+	agent_effort nvarchar(50) ,
+	net_promoter_score int,
+	submission_date nvarchar(50),
+	post_code int
+);
+GO
